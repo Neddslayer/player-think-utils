@@ -14,7 +14,7 @@ player.AddPlayerThink("think_example", function() {
 });
 ```
 
-To remove an player's thinkscript, you can call the `RemovePlayerThink(name)` method:
+To remove a player's thinkscript, you can call the `RemovePlayerThink(name)` method:
 ```squirrel
 player.RemovePlayerThink("think_example");
 ```
