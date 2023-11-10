@@ -1,18 +1,18 @@
 //=====================================================================//
 //=====================================================================//
-//                     Player Think Utilities v1.0                     //
+//                     Entity Think Utilities v1.0                     //
 //                                                                     //
 //      Author:  Neddslayer                                            //
 //      License: GNU GPL v3.0                                          //
-//      GitHub:  https://github.com/Neddslayer/player-think-utils      //
+//      GitHub:  https://github.com/Neddslayer/entity-think-utils      //
 //---------------------------------------------------------------------//
 //=====================================================================//
 //=====================================================================//
-
+printl("Entity Think Registered!");
 
 ::EntityThinkScripts <- {};
 
-::CTFPlayer.StartThinking <-  function() {
+::CBaseEntity.StartThinking <-  function() {
 	if (this.ValidateScriptScope()) {
 		local entityScriptScope = this.GetScriptScope();
 
@@ -35,7 +35,7 @@
 	}
 };
 
-::CTFPlayer.AddEntityThink <-  function(name, script) {
+::CBaseEntity.AddEntityThink <-  function(name, script) {
 	if (this.ValidateScriptScope()) {
 		EntityThinkScripts[this][name] <- script;
 	} else {
@@ -43,7 +43,7 @@
 	}
 };
 
-::CTFPlayer.RemoveEntityThink <-  function(name) {
+::CBaseEntity.RemoveEntityThink <-  function(name) {
 	if ((name in EntityThinkScripts[this])) {
 		delete EntityThinkScripts[this][name];
 	} else {
