@@ -10,17 +10,17 @@
 //=====================================================================//
 
 
-::EntityThinkScripts <- {};
+::PlayerThinkScripts <- {};
 
 ::CTFPlayer.StartThinking <-  function() {
 	if (this.ValidateScriptScope()) {
 		local entityScriptScope = this.GetScriptScope();
 
 		entityScriptScope["modular_think"] <-  function() {
-			if (!(self in EntityThinkScripts)) return;
-			if (EntityThinkScripts[self].len() <= 0) return; // if the length is less than 0... uh
+			if (!(self in PlayerThinkScripts)) return;
+			if (PlayerThinkScripts[self].len() <= 0) return; // if the length is less than 0... uh
 
-			foreach(scriptname, scriptfunction in EntityThinkScripts[self]) {
+			foreach(scriptname, scriptfunction in PlayerThinkScripts[self]) {
 				if (typeof scriptfunction == "function") {
 					scriptfunction();
 				}
@@ -31,21 +31,21 @@
 
 		AddThinkToEnt(this, "modular_think");
 
-		EntityThinkScripts[this] <- {};
+		PlayerThinkScripts[this] <- {};
 	}
 };
 
-::CTFPlayer.AddEntityThink <-  function(name, script) {
+::CTFPlayer.AddPlayerThink <-  function(name, script) {
 	if (this.ValidateScriptScope()) {
-		EntityThinkScripts[this][name] <- script;
+		PlayerThinkScripts[this][name] <- script;
 	} else {
 		printl("WARNING: script scope validation failed!");
 	}
 };
 
-::CTFPlayer.RemoveEntityThink <-  function(name) {
-	if ((name in EntityThinkScripts[this])) {
-		delete EntityThinkScripts[this][name];
+::CTFPlayer.RemovePlayerThink <-  function(name) {
+	if ((name in PlayerThinkScripts[this])) {
+		delete PlayerThinkScripts[this][name];
 	} else {
 		printl("WARNING: attempted to delete non-existent script!");
 	}
