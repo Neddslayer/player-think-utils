@@ -7,12 +7,13 @@ Whenever a player is spawned, you want to call the `StartThinking()` method:
 player.StartThinking();
 ```
 
-To add a thinkscript to a player, simply call the `AddPlayerThink(name, function)` method:
+To add a thinkscript to a player, simply call the `AddPlayerThink(name, function, overwrite)` method:
 ```squirrel
 player.AddPlayerThink("think_example", function() {
     // Your code here...
-});
+}, true);
 ```
+The `overwrite` parameter specifies if it should "refresh" the script if it's already in there.
 
 To remove a player's thinkscript, you can call the `RemovePlayerThink(name)` method:
 ```squirrel
