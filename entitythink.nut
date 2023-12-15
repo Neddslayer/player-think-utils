@@ -1,6 +1,6 @@
 //=====================================================================//
 //=====================================================================//
-//                     Player Think Utilities v1.0                     //
+//                     Player Think Utilities v1.1                     //
 //                                                                     //
 //      Author:  Neddslayer                                            //
 //      License: GNU GPL v3.0                                          //
@@ -35,9 +35,9 @@
 	}
 };
 
-::CTFPlayer.AddPlayerThink <-  function(name, script) {
+::CTFPlayer.AddPlayerThink <-  function(name, script, overwrite) {
 	if (this.ValidateScriptScope()) {
-		PlayerThinkScripts[this][name] <- script;
+		if ((overwrite && name in PlayerThinkScripts[this]) || !(name in PlayerThinkScripts[this])) PlayerThinkScripts[this][name] <- script;
 	} else {
 		printl("WARNING: script scope validation failed!");
 	}
